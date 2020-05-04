@@ -63,46 +63,73 @@
   </style>
 
   <body>
+    <!-- initialize -->
+    <script type="text/javascript">
+      window.data = [];
+    </script>
+
     <!-- structure -->
     <script type="text/javascript">
-      for (let i = 0; i <= 6; i += 2) {
-        document.write(`
-          <div class="one-vertical">
+      for (const i of Array(4).keys()) {
+        document.write(`<div class="one-vertical">`);
+        for (const j of Array(2).keys()) {
+          const daysAgo = i * 2 + j;
+          document.write(`
             <div class="one-block">
               <div class="img-container">
-                <a href="https://bing.zhanglintc.co/?daysAgo=${i}"> <img id="img${i}" src="https://bing.zhanglintc.co/?daysAgo=${i}"> </a>
+                <a href="https://bing.zhanglintc.co/?daysAgo=${daysAgo}">
+                  <img id="img${daysAgo}" src="https://bing.zhanglintc.co/?daysAgo=${daysAgo}">
+                </a>
               </div>
               <div class="desc-container">
-                <span id="span${i}">${i} daysAgo</span>
+                <span id="fav${daysAgo}" onclick=favourite(${daysAgo})>✩</span>
+                <span id="span${daysAgo}">${daysAgo} daysAgo</span>
               </div>
             </div>
-            <div class="one-block">
-              <div class="img-container">
-                <a href="https://bing.zhanglintc.co/?daysAgo=${i+1}"> <img id="img${i+1}" src="https://bing.zhanglintc.co/?daysAgo=${i+1}"> </a>
-              </div>
-              <div class="desc-container">
-                <span id="span${i+1}">${i+1} daysAgo</span>
-              </div>
-            </div>
-          </div>
-        `);
+          `);
+        }
+        document.write(`</div>`);
 
-        if (i != 6) { document.write('<hr>'); }
+        if (i != 3) {
+          document.write('<hr>');
+        }
       }
     </script>
 
-    <!-- callback functions -->
+    <!-- functions -->
     <script>
-        function callback_img(description, daysAgo) {
-            m_img = document.getElementById(`img${daysAgo}`);
-            m_img.setAttribute("title", description);
-            m_span = document.getElementById(`span${daysAgo}`);
-            original = m_span.innerHTML;
-            m_span.innerHTML = original + " / " + description;
+        function callback_img(daysAgo, description) {
+          let m_img, m_span;
+          m_img = $(`#img${daysAgo}`);
+          m_img.attr("title", description);
+          m_span = $(`#span${daysAgo}`);
+          original = m_span.html();
+          m_span.html(original + " / " + description);
+        }
+
+        function callback_get_fulldata(daysAgo, jsn) {
+          window.data[daysAgo] = jsn;
+
+          let fav;
+          fav = $(`#fav${daysAgo}`);
+          fav.html(window.data[daysAgo].in_db ? "★" : "☆");
+        }
+
+        function favourite(daysAgo) {
+          let el = document.createElement('script');
+          el.setAttribute('src', `https://bing.zhanglintc.co/favourite?daysAgo=${daysAgo}`);
+          $('head').append(el);
+          $('head script').slice(-1).remove();
+
+          let fav;
+          fav = $(`#fav${daysAgo}`);
+          fav.html("★");
+
+          alert("收藏成功");
         }
     </script>
 
-    <!-- get jsonp data from server -->
+    <!-- get jsonp img -->
     <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=0&callback=callback_img"></script>
     <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=1&callback=callback_img"></script>
     <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=2&callback=callback_img"></script>
@@ -111,5 +138,15 @@
     <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=5&callback=callback_img"></script>
     <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=6&callback=callback_img"></script>
     <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=7&callback=callback_img"></script>
+
+    <!-- get jsonp fulldata -->
+    <script src="https://bing.zhanglintc.co/fulldata_callback?daysAgo=0&callback=callback_get_fulldata"></script>
+    <script src="https://bing.zhanglintc.co/fulldata_callback?daysAgo=1&callback=callback_get_fulldata"></script>
+    <script src="https://bing.zhanglintc.co/fulldata_callback?daysAgo=2&callback=callback_get_fulldata"></script>
+    <script src="https://bing.zhanglintc.co/fulldata_callback?daysAgo=3&callback=callback_get_fulldata"></script>
+    <script src="https://bing.zhanglintc.co/fulldata_callback?daysAgo=4&callback=callback_get_fulldata"></script>
+    <script src="https://bing.zhanglintc.co/fulldata_callback?daysAgo=5&callback=callback_get_fulldata"></script>
+    <script src="https://bing.zhanglintc.co/fulldata_callback?daysAgo=6&callback=callback_get_fulldata"></script>
+    <script src="https://bing.zhanglintc.co/fulldata_callback?daysAgo=7&callback=callback_get_fulldata"></script>
   </body>
 </html>
