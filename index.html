@@ -10,6 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
 
+    <script type="text/javascript" src="./jquery.min.v1.9.1.js"></script>
+
     <link rel="shortcut icon" href="./bing.ico"/>
     <link rel="bookmark" href="./bing.ico"/>
 
@@ -61,163 +63,53 @@
   </style>
 
   <body>
-    <div class="one-vertical">
-      <div class="one-block">
-        <div class="img-container">
-          <a href="https://bing.zhanglintc.co/?daysAgo=0"> <img id="img0" src="https://bing.zhanglintc.co/?daysAgo=0"> </a>
-        </div>
-        <div class="desc-container">
-          <span id="span0">0 daysAgo</span>
-        </div>
-      </div>
-      <div class="one-block">
-        <div class="img-container">
-          <a href="https://bing.zhanglintc.co/?daysAgo=1"> <img id="img1" src="https://bing.zhanglintc.co/?daysAgo=1"> </a>
-        </div>
-        <div class="desc-container">
-          <span id="span1">1 daysAgo</span>
-        </div>
-      </div>
-    </div>
+    <!-- structure -->
+    <script type="text/javascript">
+      for (let i = 0; i <= 6; i += 2) {
+        document.write(`
+          <div class="one-vertical">
+            <div class="one-block">
+              <div class="img-container">
+                <a href="https://bing.zhanglintc.co/?daysAgo=${i}"> <img id="img${i}" src="https://bing.zhanglintc.co/?daysAgo=${i}"> </a>
+              </div>
+              <div class="desc-container">
+                <span id="span${i}">${i} daysAgo</span>
+              </div>
+            </div>
+            <div class="one-block">
+              <div class="img-container">
+                <a href="https://bing.zhanglintc.co/?daysAgo=${i+1}"> <img id="img${i+1}" src="https://bing.zhanglintc.co/?daysAgo=${i+1}"> </a>
+              </div>
+              <div class="desc-container">
+                <span id="span${i+1}">${i+1} daysAgo</span>
+              </div>
+            </div>
+          </div>
+        `);
 
-    <hr>
-
-    <div class="one-vertical">
-      <div class="one-block">
-        <div class="img-container">
-          <a href="https://bing.zhanglintc.co/?daysAgo=2"> <img id="img2" src="https://bing.zhanglintc.co/?daysAgo=2"> </a>
-        </div>
-        <div class="desc-container">
-          <span id="span2">2 daysAgo</span>
-        </div>
-      </div>
-      <div class="one-block">
-        <div class="img-container">
-          <a href="https://bing.zhanglintc.co/?daysAgo=3"> <img id="img3" src="https://bing.zhanglintc.co/?daysAgo=3"> </a>
-        </div>
-        <div class="desc-container">
-          <span id="span3">3 daysAgo</span>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="one-vertical">
-      <div class="one-block">
-        <div class="img-container">
-          <a href="https://bing.zhanglintc.co/?daysAgo=4"> <img id="img4" src="https://bing.zhanglintc.co/?daysAgo=4"> </a>
-        </div>
-        <div class="desc-container">
-          <span id="span4">4 daysAgo</span>
-        </div>
-      </div>
-      <div class="one-block">
-        <div class="img-container">
-          <a href="https://bing.zhanglintc.co/?daysAgo=5"> <img id="img5" src="https://bing.zhanglintc.co/?daysAgo=5"> </a>
-        </div>
-        <div class="desc-container">
-          <span id="span5">5 daysAgo</span>
-        </div>
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="one-vertical">
-      <div class="one-block">
-        <div class="img-container">
-          <a href="https://bing.zhanglintc.co/?daysAgo=6"> <img id="img6" src="https://bing.zhanglintc.co/?daysAgo=6"> </a>
-        </div>
-        <div class="desc-container">
-          <span id="span6">6 daysAgo</span>
-        </div>
-      </div>
-      <div class="one-block">
-        <div class="img-container">
-          <a href="https://bing.zhanglintc.co/?daysAgo=7"> <img id="img7" src="https://bing.zhanglintc.co/?daysAgo=7"> </a>
-        </div>
-        <div class="desc-container">
-          <span id="span7">7 daysAgo</span>
-        </div>
-      </div>
-    </div>
+        if (i != 6) { document.write('<hr>'); }
+      }
+    </script>
 
     <!-- callback functions -->
     <script>
-        function callback_img0(description) {
-            img0 = document.getElementById("img0");
-            span0 = document.getElementById("span0");
-            img0.setAttribute("title", description);
-            original = span0.innerHTML;
-            span0.innerHTML = original + " / " + description;
-        }
-
-        function callback_img1(description) {
-            img1 = document.getElementById("img1");
-            img1.setAttribute("title", description);
-            span1 = document.getElementById("span1");
-            original = span1.innerHTML;
-            span1.innerHTML = original + " / " + description;
-        }
-
-        function callback_img2(description) {
-            img2 = document.getElementById("img2");
-            img2.setAttribute("title", description);
-            span2 = document.getElementById("span2");
-            original = span2.innerHTML;
-            span2.innerHTML = original + " / " + description;
-        }
-
-        function callback_img3(description) {
-            img3 = document.getElementById("img3");
-            img3.setAttribute("title", description);
-            span3 = document.getElementById("span3");
-            original = span3.innerHTML;
-            span3.innerHTML = original + " / " + description;
-        }
-
-        function callback_img4(description) {
-            img4 = document.getElementById("img4");
-            img4.setAttribute("title", description);
-            span4 = document.getElementById("span4");
-            original = span4.innerHTML;
-            span4.innerHTML = original + " / " + description;
-        }
-
-        function callback_img5(description) {
-            img5 = document.getElementById("img5");
-            img5.setAttribute("title", description);
-            span5 = document.getElementById("span5");
-            original = span5.innerHTML;
-            span5.innerHTML = original + " / " + description;
-        }
-
-        function callback_img6(description) {
-            img6 = document.getElementById("img6");
-            img6.setAttribute("title", description);
-            span6 = document.getElementById("span6");
-            original = span6.innerHTML;
-            span6.innerHTML = original + " / " + description;
-        }
-
-        function callback_img7(description) {
-            img7 = document.getElementById("img7");
-            img7.setAttribute("title", description);
-            span7 = document.getElementById("span7");
-            original = span7.innerHTML;
-            span7.innerHTML = original + " / " + description;
+        function callback_img(description, daysAgo) {
+            m_img = document.getElementById(`img${daysAgo}`);
+            m_img.setAttribute("title", description);
+            m_span = document.getElementById(`span${daysAgo}`);
+            original = m_span.innerHTML;
+            m_span.innerHTML = original + " / " + description;
         }
     </script>
-    
+
     <!-- get jsonp data from server -->
-    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=0&callback=callback_img0"></script>
-    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=1&callback=callback_img1"></script>
-    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=2&callback=callback_img2"></script>
-    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=3&callback=callback_img3"></script>
-    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=4&callback=callback_img4"></script>
-    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=5&callback=callback_img5"></script>
-    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=6&callback=callback_img6"></script>
-    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=7&callback=callback_img7"></script>
+    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=0&callback=callback_img"></script>
+    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=1&callback=callback_img"></script>
+    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=2&callback=callback_img"></script>
+    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=3&callback=callback_img"></script>
+    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=4&callback=callback_img"></script>
+    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=5&callback=callback_img"></script>
+    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=6&callback=callback_img"></script>
+    <script src="https://bing.zhanglintc.co/description_with_callback?daysAgo=7&callback=callback_img"></script>
   </body>
 </html>
