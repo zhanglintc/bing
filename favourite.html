@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <script type="text/javascript" src="./jquery.min.v1.9.1.js"></script>
+
+    <link rel="shortcut icon" href="./bing.ico"/>
+    <link rel="bookmark" href="./bing.ico"/>
+
+    <title>Favourited Wallpapers</title>
+  </head>
+
+  <style type="text/css">
+    :root {
+      --base-width: 484px;
+      --base-height: 272px;
+    }
+    input {
+      width: 20px;
+    }
+    img {
+      width: calc(var(--base-width) * 1.5);
+      height: calc(var(--base-height) * 1.5);
+    }
+    hr {
+      display: block;
+      unicode-bidi: isolate;
+      margin-block-start: 0.5em;
+      margin-block-end: 0.5em;
+      margin-inline-start: auto;
+      margin-inline-end: auto;
+      overflow: hidden;
+      border-style: inset;
+      border-width: 1px;
+    }
+    .right_row {
+      margin-left: calc(var(--base-width) * 1.5);
+    }
+    .one-vertical {
+      display: flex;
+      height: auto;
+    }
+    .img-container {
+      margin-right: 5px;
+      margin-bottom: 5px;
+      width: calc(var(--base-width) * 1.5);
+      height: calc(var(--base-height) * 1.5);
+    }
+    .desc-container {
+      margin-right: 5px;
+      margin-bottom: 5px;
+      width: calc(var(--base-width) * 1.5);
+      height: 28px;
+    }
+  </style>
+
+  <body>
+    <!-- initialize -->
+    <script type="text/javascript">
+      window.data = [];
+    </script>
+
+    <!-- functions -->
+    <script>
+      function callback_hash_list(jsn) {
+        window.data = jsn;
+
+        for (let record of window.data.hash_list) {
+          let hash = record.HASH;
+
+          let img = document.createElement('img');
+          img.setAttribute('src', `https://bing.zhanglintc.co/rimg/${hash}`);
+
+          let a = document.createElement('a');
+          a.setAttribute('href', `https://bing.zhanglintc.co/rimg/${hash}`);
+          a.append(img);
+
+          let div = document.createElement('div');
+          div.append(a);
+
+          $('body').append(div);
+        }
+      }
+    </script>
+
+    <script src="https://bing.zhanglintc.co/hash_list_callback?callback=callback_hash_list"></script>
+
+  </body>
+</html>

@@ -98,43 +98,43 @@
 
     <!-- functions -->
     <script>
-        function callback_img(daysAgo, description) {
-          let m_img, m_span;
-          m_img = $(`#img${daysAgo}`);
-          m_img.attr("title", description);
-          m_span = $(`#span${daysAgo}`);
-          original = m_span.html();
-          m_span.html(original + " / " + description);
+      function callback_img(daysAgo, description) {
+        let m_img, m_span;
+        m_img = $(`#img${daysAgo}`);
+        m_img.attr("title", description);
+        m_span = $(`#span${daysAgo}`);
+        original = m_span.html();
+        m_span.html(original + " / " + description);
+      }
+
+      function callback_get_fulldata(daysAgo, jsn) {
+        window.data[daysAgo] = jsn;
+
+        let fav;
+        fav = $(`#fav${daysAgo}`);
+        fav.html(window.data[daysAgo].in_db ? "★" : "☆");
+      }
+
+      function callback_set_icon(daysAgo) {
+        let fav;
+        fav = $(`#fav${daysAgo}`);
+        fav.html("★");
+
+        alert("收藏成功");
+      }
+
+      function favourite(daysAgo) {
+        let fav;
+        fav = $(`#fav${daysAgo}`);
+        if (fav.html() == "★") {
+          return;
         }
 
-        function callback_get_fulldata(daysAgo, jsn) {
-          window.data[daysAgo] = jsn;
-
-          let fav;
-          fav = $(`#fav${daysAgo}`);
-          fav.html(window.data[daysAgo].in_db ? "★" : "☆");
-        }
-
-        function callback_set_icon(daysAgo) {
-          let fav;
-          fav = $(`#fav${daysAgo}`);
-          fav.html("★");
-
-          alert("收藏成功");
-        }
-
-        function favourite(daysAgo) {
-          let fav;
-          fav = $(`#fav${daysAgo}`);
-          if (fav.html() == "★") {
-            return;
-          }
-
-          let el = document.createElement('script');
-          el.setAttribute('src', `https://bing.zhanglintc.co/favourite?daysAgo=${daysAgo}&callback=callback_set_icon`);
-          $('head').append(el);
-          $('head script').slice(-1).remove();
-        }
+        let el = document.createElement('script');
+        el.setAttribute('src', `https://bing.zhanglintc.co/favourite?daysAgo=${daysAgo}&callback=callback_set_icon`);
+        $('head').append(el);
+        $('head script').slice(-1).remove();
+      }
     </script>
 
     <!-- get jsonp img -->
