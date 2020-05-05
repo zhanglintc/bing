@@ -115,17 +115,25 @@
           fav.html(window.data[daysAgo].in_db ? "★" : "☆");
         }
 
-        function favourite(daysAgo) {
-          let el = document.createElement('script');
-          el.setAttribute('src', `https://bing.zhanglintc.co/favourite?daysAgo=${daysAgo}`);
-          $('head').append(el);
-          $('head script').slice(-1).remove();
-
+        function callback_set_icon(daysAgo) {
           let fav;
           fav = $(`#fav${daysAgo}`);
           fav.html("★");
 
           alert("收藏成功");
+        }
+
+        function favourite(daysAgo) {
+          let fav;
+          fav = $(`#fav${daysAgo}`);
+          if (fav.html() == "★") {
+            return;
+          }
+
+          let el = document.createElement('script');
+          el.setAttribute('src', `https://bing.zhanglintc.co/favourite?daysAgo=${daysAgo}&callback=callback_set_icon`);
+          $('head').append(el);
+          $('head script').slice(-1).remove();
         }
     </script>
 
