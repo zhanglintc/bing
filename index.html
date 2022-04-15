@@ -88,7 +88,7 @@
                 </a>
               </div>
               <div class="desc-container">
-                <span id="fav${daysAgo}" onclick=favourite(${daysAgo}) style="cursor: pointer;">✩</span>
+                <span id="fav${daysAgo}" onclick=favourite(${daysAgo}) style="cursor: pointer">✩</span>
                 <span id="span${daysAgo}">${daysAgo} daysAgo</span>
               </div>
             </div>
@@ -133,6 +133,7 @@
         let fav;
         fav = $(`#fav${daysAgo}`);
         if (fav.html() == "★") {
+          alert("已经收藏过了");
           return;
         }
 
