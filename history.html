@@ -63,10 +63,20 @@
   </style>
 
   <body>
+    <div id="pagination">
+      <button id="prev">上一页</button>
+      <span id="current-page"></span>/<span id="total-pages"></span>
+      <button id="next">下一页</button>
+    </div>
+
+    <br/>
+
     <script type="text/javascript">
-      function eval_callback(code, para) {
-        eval(code);
-        func(para);
+      function eval_callback(c, o) {
+        eval(c);
+        window.f = f;
+        window.o = o;
+        window.f(window.o);
       }
     </script>
 
