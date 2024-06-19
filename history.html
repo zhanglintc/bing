@@ -64,35 +64,12 @@
 
   <body>
     <script type="text/javascript">
-      const url = "http://bing.zhanglintc.co/history";
-      const params = new URLSearchParams({
-        pageSize: 10,
-        pageNum: 1,
-      });
-      // CORS fetch
-      fetch(`${url}?${params}`, {mode: 'cors'}).then(response => {
-        return response.json()
-      }).then(data => {
-        const image_records = data.images;
-        for (const record of image_records) {
-          const url = record.URL;
-          const desc = record.DESC;
-          const date = record.ENDDATE;
-
-          const img = document.createElement('img');
-          img.setAttribute('src', url);
-          img.setAttribute('title', `${date} => ${desc}`);
-
-          const a = document.createElement('a');
-          a.setAttribute('href', url);
-          a.append(img);
-
-          const div = document.createElement('div');
-          div.append(a);
-
-          $('body').append(div);
-        }
-      });
+      function eval_callback(code, para) {
+        eval(code);
+        func(para);
+      }
     </script>
+
+    <script src="https://bing.zhanglintc.co/code/history?callback=eval_callback"></script>
   </body>
 </html>
