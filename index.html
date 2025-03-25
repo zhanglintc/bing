@@ -27,8 +27,8 @@
       width: 20px;
     }
     img {
-      width: calc(var(--base-width) * 1.5);
-      height: calc(var(--base-height) * 1.5);
+      width: 100%;
+      height: auto;
     }
     hr {
       display: block;
@@ -41,24 +41,33 @@
       border-style: inset;
       border-width: 1px;
     }
-    .right_row {
-      margin-left: calc(var(--base-width) * 1.5);
-    }
     .one-vertical {
       display: flex;
-      height: auto;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 5px; /* 左右图片间隙为5px */
+    }
+    .one-block {
+      flex: 1 1 calc(50% - 2.5px); /* 减去间隙的一半，图片一行两张 */
+      margin-bottom: 10px;
     }
     .img-container {
-      margin-right: 5px;
-      margin-bottom: 5px;
-      width: calc(var(--base-width) * 1.5);
-      height: calc(var(--base-height) * 1.5);
+      width: 100%;
+      height: auto;
     }
     .desc-container {
-      margin-right: 5px;
+      width: 100%;
+      min-height: 28px;
       margin-bottom: 5px;
-      width: calc(var(--base-width) * 1.5);
-      height: 28px;
+      display: flex;
+      align-items: first baseline;
+    }
+    .desc-container span {
+      white-space: normal; /* 允许文字折行 */
+      display: inline-block; /* 确保文字和☆符号在同一行 */
+    }
+    .desc-container span:first-child {
+      margin-right: 3px; /* ☆和文字之间间隔 */
     }
   </style>
 
